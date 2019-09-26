@@ -6,9 +6,9 @@
    tasks:
       - name: deploying web app into tomcat
         copy:
-           src: /var/lib/jenkins/workspace/ansible/web/target/time-tracker-web-0.5.0-SNAPSHOT.war
-     #      src: "{{ item }}"
+     #      src: /var/lib/jenkins/workspace/ansible/web/target/time-tracker-web-0.5.0-SNAPSHOT.war
+           src: "{{ item }}"
            dest: /opt/
    ### below comand is for transfer multiple files which ending with .war
-   #     with_fileglob:
-   #        - /var/lib/jenkins/workspace/ansible/test/target/*.war
+        with_fileglob:
+          - /var/lib/jenkins/workspace/ansible/test/target/*.war
