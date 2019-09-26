@@ -11,4 +11,4 @@
            dest: /opt/
    ### below comand is for transfer multiple files which ending with .war
         with_fileglob:
-          - /var/lib/jenkins/workspace/ansible/test/target/*.war
+          - /var/lib/jenkins/workspace/test/web/target/*.war
