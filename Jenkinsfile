@@ -9,14 +9,6 @@ pipeline {
                 }
             }
         }
-        stage ('Testing Stage') {
-
-            steps {
-                maven_invoker(maven : 'maven') {
-                    bat 'mvn test'
-                }
-            }
-        }
         stage ('Install Stage') {
             steps {
                 maven_invoker(maven : 'maven') {
