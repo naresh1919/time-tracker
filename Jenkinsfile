@@ -1,20 +1,8 @@
-pipeline {
-    agent any
-    stages {
-        stage ('Compile Stage') {
-
-            steps {
-                maven_invoker(maven : 'maven-compiler') {
-                    bat 'mvn clean compile'
-                }
-            }
-        }
-        stage ('Install Stage') {
-            steps {
-                maven_invoker(maven : 'maven-compiler' ) {
-                    bat 'mvn install'
-                }
-            }
-        }
+node {
+    stage('SCM') {
+        git 'https://github.com/naresh1919/time-tracker.git'
+    }
+    stage('build&package') {
+        sh label: '', script: 'mvn package'
     }
 }
