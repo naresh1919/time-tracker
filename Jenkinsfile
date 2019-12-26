@@ -2,11 +2,23 @@ node {
     stage('SCM') {
         git 'https://github.com/naresh1919/time-tracker.git'
     }
-    stage('build&package') {
-        sh label: '', script: 'mvn package'
+    stage('clean') {
+        sh label: '', script: 'mvn clean'
+    }
+    stage('compile') {
+        sh label: '', script: 'mvn compile'
+    }
+    stage('test') {
+        sh label: '', script: 'mvn test'
+    }
+    stage('buildandtest') {
+        withSonarQubeEnv(credentialsId: 'sonar2') {
+        sh label: '', script: 'mvn package sonar:sonar'
     }
     stage('Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
+    }
+    stage('storeArtifacts') {
         archiveArtifacts 'core/target/*.jar'
         archiveArtifacts 'web/target/*.war'
     }
