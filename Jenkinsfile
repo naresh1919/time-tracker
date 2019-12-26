@@ -5,4 +5,8 @@ node {
     stage('build&package') {
         sh label: '', script: 'mvn package'
     }
+    stage('Results') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
+    }
 }
