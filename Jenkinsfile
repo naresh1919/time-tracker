@@ -13,7 +13,7 @@ node {
     }
     stage('buildandtest') {
         withSonarQubeEnv(credentialsId: 'sonar2') {
-        sh label: '', script: 'mvn package sonar:sonar'
+        sh label: '', script: 'mvn package sonar:sonar2'
         }
     }
     stage('Results') {
