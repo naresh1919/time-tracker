@@ -34,4 +34,10 @@ node {
                 sh label: '', script: 'docker push naresh1919/warapp'
             }
     }
+    stage('docker container run') {
+        def dockerRun = 'docker run -d -p 8080:8080 --name myapp naresh1919/myapp'
+        sshagent(['docker_agent']) {                                               # credential of docker adgent
+            sh "ssh -o StrictHostKeyChecking=no ubuntu@<SERVER ID> ${dockerRun}"    #ip address of remote server
+        }
+    }
 }
