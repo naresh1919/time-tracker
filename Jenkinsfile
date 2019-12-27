@@ -23,4 +23,12 @@ node {
         archiveArtifacts 'core/target/*.jar'
         archiveArtifacts 'web/target/*.war'
     }
+    stage('create docekr image') {
+        sh label: '', script: 'docker build -t naresh1919/warapp .'
+    }
+    stage('push docekr image') {
+        withDockerRegistry(credentialsId: 'docker') {
+                sh label: '', script: 'docker push naresh1919/warapp'
+            }
+    }
 }
