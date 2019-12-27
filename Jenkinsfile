@@ -11,6 +11,9 @@ node {
     stage('test') {
         sh label: '', script: 'mvn test'
     }
+    stage('package') {
+            sh label: '', script: 'mvn package '
+    }
     stage('Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
     }
