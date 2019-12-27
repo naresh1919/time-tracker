@@ -5,24 +5,18 @@ node {
     stage('clean') {
         sh label: '', script: 'mvn clean'
     }
-    stage('compile') {
-        sh label: '', script: 'mvn compile'
-    }
-    stage('test') {
-        sh label: '', script: 'mvn test'
-    }
-    stage('package') {
-            sh label: '', script: 'mvn package '
+    stage('compile test package') {
+        sh label: '', script: 'mvn compile test package'
     }
     stage('buildandtest') {
             withSonarQubeEnv(credentialsId: 'sonar2') {
                 sh label: '', script: 'mvn package sonar:sonar'
        }
     }
-    stage('Results') {
+    stage('junit test  Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
     }
-    stage('storeArtifacts') {
+    stage('archiveArtifacts') {
         archiveArtifacts 'core/target/*.jar'
         archiveArtifacts 'web/target/*.war'
     }
