@@ -14,6 +14,11 @@ node {
     stage('package') {
             sh label: '', script: 'mvn package '
     }
+    stage('buildandtest') {
+            withSonarQubeEnv(credentialsId: 'sonar2') {
+                sh label: '', script: 'mvn package sonar:sonar'
+       }
+    }
     stage('Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
     }
