@@ -34,21 +34,6 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.8</version>
-                    <execuations>
-                       <execuation>
-                           <id>pre-unit-test</id>
-                           <goals>
-                              <goal>prepare-agent</goal>   
-                           <goals>
-                       </execuation>
-                       <execuation>
-                           <id>pre-unit-test</id>
-                           <phase>test</phase>
-                           <goals>
-                               <goal>report</goal>
-                           </goals>
-                       </execuation>
-                    </execuations>
                 </plugin>
                 
                 <plugin>
