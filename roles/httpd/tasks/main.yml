@@ -1,0 +1,13 @@
+---
+  - name: install httpd from role
+    yum: name=httpd state=present
+#  - name: start httpd
+#    service: name=httpd state=started
+  - name: copyoing the file
+    copy: src=index.html dest=/var/www/html/index.html 
+  - name: change httpd conf file
+    template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+    become: yes
+    become_user: root
+  - name: restaring the httpd
+    service: name=httpd state=restarted 
