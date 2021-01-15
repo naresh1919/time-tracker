@@ -4,7 +4,7 @@
    sudo: yes
    connection: ssh
    tasks:
-      - name: deploying web app into tomcat
+      - name: deploying web app into tomcat  in  to server
         copy:
      #      src: /var/lib/jenkins/workspace/ansible/web/target/time-tracker-web-0.5.0-SNAPSHOT.war
            src: "{{ item }}"
