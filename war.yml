@@ -1,9 +1,11 @@
 ---
  - hosts: all
    user: root
+   vars:
+    - my_app: 'test.war'
    tasks:
     - name: get and deploy the war
       get_url:
-       url: "http://admin:Jfrog123@35.192.37.29:8082/artifactory/test-local/time-tracker-web-0.5.0-SNAPSHOT.war"
+       url: "http://admin:Jfrog123@35.192.37.29:8082/artifactory/test-local/{{my_app}}"
        dest: /opt/
        force_basic_auth: yes 
