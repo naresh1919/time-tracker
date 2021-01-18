@@ -6,6 +6,6 @@
    tasks:
     - name: get and deploy the war
       get_url:
-       url: "http://admin:Jfrog123@35.232.13.249:8082/artifactory/test-local/war/{{my_app}}"
+       url: "http://admin:Jfrog123@35.225.186.69:8082/artifactory/test-local/war/{{my_app}}"
        dest: /opt/
        force_basic_auth: yes 
