@@ -4,10 +4,40 @@
 #  - name: start httpd
 #    service: name=httpd state=started
   - name: copyoing the file
-    copy: src=index.html dest=/var/www/html/index.html 
-  - name: change httpd conf file
-    template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+    copy: src=index.html dest=/var/www/html/index.html
+  #- name: change httpd conf file
+   # template: 
+   #  src: "{{ item }}"
+   #  dest: /etc/httpd/conf/httpd.conf
+   # with_first_found:
+   #    - files:
+   #        - "{{my_val}}-httpd.conf.j2"
+   #      skip: true
+   # become: yes
+   # become_user: root
+  
+  #- name: change httpd conf file
+   # template:
+   #  src: "{{ item }}"
+   #  dest: /etc/httpd/conf/httpd.conf
+   # with_first_found:
+   #    - files:
+   #        - "{{my_val}}-httpd.conf.j2"
+   #      skip: true
+   # become: yes
+   # become_user: root
+
+  - name: change httpd conf file from findme
+    template:
+     src: "{{ lookup('first_found', findme)}}"
+     dest: /etc/httpd/conf/httpd.conf
+    vars:
+      findme:
+         - "templates/{{my_val}}-httpd.conf.j2"
+         - templates/default-httpd.conf.j2
     become: yes
     become_user: root
+
+    #when: "{{my_val}}-httpd.conf.j2" == 'naresh-httpd.conf.j2'
   - name: restaring the httpd
     service: name=httpd state=restarted 
